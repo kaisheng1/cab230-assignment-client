@@ -3,9 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
 
 const routes = [
 	{ name: 'Home', to: '/' },
@@ -27,10 +24,6 @@ function Layout({ children }) {
 						</Nav.Item>
 					))}
 				</Nav>
-				<Form inline>
-					<FormControl type="text" placeholder="Search" className="mr-sm-2" />
-					<Button variant="outline-info">Search</Button>
-				</Form>
 			</Navbar>
 			<main className="p-4">{children}</main>
 		</div>

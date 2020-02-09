@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -7,9 +7,13 @@ import Button from 'react-bootstrap/Button';
 
 function LoginForm() {
 	const { isAuthenticated, doLogin } = useAuth();
+	const [ signup, setSignup ] = useState(false);
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		doLogin();
+		if (!signup) {
+			doLogin();
+		}
 	};
 	return (
 		<Form onSubmit={handleSubmit}>
@@ -23,7 +27,10 @@ function LoginForm() {
 				<Form.Control type="password" placeholder="Password" />
 			</Form.Group>
 			<Button variant="primary" type="submit">
-				Login
+				{signup ? 'Signup' : 'Login'}
+			</Button>
+			<Button variant="secondary" className="ml-2" type="button" onClick={() => setSignup(!signup)}>
+				{signup ? 'Login' : 'Signup'}
 			</Button>
 			{isAuthenticated && <Redirect to="/" />}
 		</Form>
