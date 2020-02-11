@@ -12,7 +12,7 @@ function LoginForm() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (!signup) {
-			doLogin();
+			doLogin('a@a', 'a');
 		}
 	};
 	return (

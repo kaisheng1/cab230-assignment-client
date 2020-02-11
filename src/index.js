@@ -5,10 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import App from './App';
 import { AuthProvider } from './context/AuthContext';
+import { OffenceProvider } from './context/OffenceContext';
 
 ReactDOM.render(
 	<AuthProvider>
-		<App />
+		<OffenceProvider>
+			<App />
+		</OffenceProvider>
 	</AuthProvider>,
 	document.getElementById('root')
 );
