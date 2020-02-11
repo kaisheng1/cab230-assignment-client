@@ -19,13 +19,12 @@ function GridPage() {
 			<h2>Welcome to grid page</h2>
 			<Row className="mt-4">
 				<Col>
-					<SearchForm searchOffence={searchOffence} />
+					<SearchForm offence={filters.offence} searchOffence={searchOffence} />
 				</Col>
 				<Col className="col-md-auto">
 					<FilterModal filterResult={filterResult} />
 				</Col>
 			</Row>
-			{JSON.stringify(filters)}
 			<Table className="mt-2" responsive striped bordered hover>
 				<thead>
 					<tr>{columns.map((col) => <th key={col}>{col}</th>)}</tr>
