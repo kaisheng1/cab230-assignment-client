@@ -7,6 +7,16 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
 	const [ isAuthenticated, setIsAuthenticated ] = useState(false);
+
+	React.useEffect(() => {
+		checkLogin('a@a', 'a')
+			.then((token) => {
+				localStorage.setItem('token', token);
+				setIsAuthenticated(true);
+			})
+			.catch((err) => console.log(err));
+	}, []);
+
 	const doRegister = async (email, password) => {
 		await registerUser(email, password);
 	};

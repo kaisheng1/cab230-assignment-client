@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useOffence } from '../context/OffenceContext';
 import useOffences from '../hooks/useOffences';
 
@@ -11,8 +11,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function GridPage() {
-	const { filters, searchOffence, filterResult } = useOffence();
-	const { data, columns } = useOffences();
+	const { searchOffence, filterResult, resetFilters } = useOffence();
+	const { data, columns, filters, loading, error } = useOffences();
+
+	useEffect(() => {
+		//reset the filters
+		resetFilters();
+	}, []);
 
 	return (
 		<Layout>
@@ -25,14 +30,18 @@ function GridPage() {
 					<FilterModal filterResult={filterResult} />
 				</Col>
 			</Row>
-			<Table className="mt-2" responsive striped bordered hover>
-				<thead>
-					<tr>{columns.map((col) => <th key={col}>{col}</th>)}</tr>
-				</thead>
-				<tbody>
-					{data.map((row, i) => <tr key={i}>{columns.map((col) => <td key={col}>{row[col]}</td>)}</tr>)}
-				</tbody>
-			</Table>
+			{loading ? (
+				'Loading...'
+			) : (
+				<Table className="mt-2" responsive striped bordered hover>
+					<thead>
+						<tr>{columns.map((col) => <th key={col}>{col}</th>)}</tr>
+					</thead>
+					<tbody>
+						{data.map((row, i) => <tr key={i}>{columns.map((col) => <td key={col}>{row[col]}</td>)}</tr>)}
+					</tbody>
+				</Table>
+			)}
 		</Layout>
 	);
 }

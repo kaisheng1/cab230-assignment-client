@@ -30,6 +30,16 @@ export const registerUser = async (email, password) => {
 };
 
 //----------------------------------------------GET-----------------------------------------------------------
+export const fetchStuff = async (stuff) => {
+	const url = `/${stuff}`;
+	const response = await axios({
+		method: 'GET',
+		baseURL,
+		url
+	});
+	return response.data[stuff];
+};
+
 export const fetchOffences = async () => {
 	const response = await axios({
 		method: 'GET',

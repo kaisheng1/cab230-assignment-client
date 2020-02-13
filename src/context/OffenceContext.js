@@ -4,10 +4,12 @@ export const OffenceContext = createContext();
 
 export const useOffence = () => useContext(OffenceContext);
 
+const initialFilters = {
+	offence: 'Arson'
+};
+
 export const OffenceProvider = ({ children }) => {
-	const [ filters, setFilters ] = useState({
-		offence: 'Advertising Prostitution'
-	});
+	const [ filters, setFilters ] = useState(initialFilters);
 	const [ data, setData ] = useState([]);
 	const [ columns, setColumns ] = useState([]);
 
@@ -25,8 +27,14 @@ export const OffenceProvider = ({ children }) => {
 		setFilters({ offence: filters.offence, ...inputsMap });
 	};
 
+	const resetFilters = () => {
+		setFilters(initialFilters);
+	};
+
 	return (
-		<OffenceContext.Provider value={{ data, columns, filters, setData, setColumns, searchOffence, filterResult }}>
+		<OffenceContext.Provider
+			value={{ data, columns, filters, setData, setColumns, searchOffence, filterResult, resetFilters }}
+		>
 			{children}
 		</OffenceContext.Provider>
 	);
