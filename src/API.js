@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:4000/';
+const baseURL = process.env.REACT_APP_SERVER_URL;
 
 //----------------------------------POST--------------------------------------------------------
 export const checkLogin = async (email, password) => {
@@ -65,6 +65,15 @@ export const fetchAreas = async () => {
 		url: '/areas'
 	});
 	return response.data.areas;
+};
+
+export const searchArea = async (area) => {
+	const response = await axios({
+		method: 'GET',
+		baseURL,
+		url: `/area/${area}`
+	});
+	return response.data[area];
 };
 
 export const fetchGenders = async () => {

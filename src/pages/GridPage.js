@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useOffence } from '../context/OffenceContext';
+import React from 'react';
 import useOffences from '../hooks/useOffences';
 
 import Layout from '../components/Layout';
@@ -11,14 +10,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function GridPage() {
-	const { searchOffence, filterResult, resetFilters } = useOffence();
-	const { data, columns, filters, loading, error } = useOffences();
-
-	useEffect(() => {
-		//reset the filters
-		resetFilters();
-	}, []);
-
+	const { data, columns, filters, loading, actions } = useOffences();
+	const { searchOffence, filterResult } = actions;
 	return (
 		<Layout>
 			<h2>Welcome to grid page</h2>
