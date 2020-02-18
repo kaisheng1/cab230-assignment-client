@@ -10,7 +10,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function GridPage() {
-	const { data, columns, filters, loading, actions } = useOffences();
+	const { data, columns, filters, loading, error, actions } = useOffences();
 	const { searchOffence, filterResult } = actions;
 	return (
 		<Layout>
@@ -35,6 +35,7 @@ function GridPage() {
 					</tbody>
 				</Table>
 			)}
+			{error}
 		</Layout>
 	);
 }

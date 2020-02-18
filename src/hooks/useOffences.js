@@ -39,7 +39,7 @@ const useOffences = () => {
 					setColumns(Object.keys(result[0]));
 					setData(result);
 				})
-				.catch((err) => setError(err))
+				.catch((err) => setError(err.message))
 				.finally(() => setLoading(false));
 		},
 		[ filters ]
